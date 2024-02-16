@@ -36,7 +36,7 @@ use Eccube\Entity\Category;
 use Plugin\Coupon42\Repository\CouponOrderRepository;
 use Plugin\Coupon42\Repository\CouponRepository;
 use Plugin\Coupon42\Service\PurchaseFlow\Processor\CouponProcessor;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**

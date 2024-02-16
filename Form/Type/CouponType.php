@@ -17,7 +17,7 @@ use Carbon\Carbon;
 use Eccube\Form\Type\PriceType;
 use Plugin\Coupon42\Entity\Coupon;
 use Plugin\Coupon42\Repository\CouponRepository;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -76,7 +76,7 @@ class CouponType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $currency = $this->container->getParameter('currency');
+        $currency = $this->container->get(\Eccube\Common\EccubeConfig::class)->get('currency');
         $builder
             ->add('coupon_cd', TextType::class, [
                 'label' => 'plugin_coupon.admin.label.coupon_cd',
