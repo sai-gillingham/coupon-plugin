@@ -1,0 +1,16 @@
+services:
+    Plugin\Coupon42\Form\Type\CouponType:
+        arguments:
+            $container: !service_locator
+                Psr\Container\ContainerInterface: '\Psr\Container\ContainerInterface'
+                Eccube\Common\EccubeConfig: '@Eccube\Common\EccubeConfig'
+        autowire: true
+        autoconfigure: true
+        public: false
+    Plugin\Coupon42\Service\CouponService:
+        arguments:
+            $container: !service_locator
+                Psr\Container\ContainerInterface: '\Psr\Container\ContainerInterface'
+        autowire: true
+        autoconfigure: true
+        public: false
