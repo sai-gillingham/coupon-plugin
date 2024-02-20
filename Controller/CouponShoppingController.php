@@ -99,7 +99,7 @@ class CouponShoppingController extends AbstractController
         $Order = $this->orderHelper->getPurchaseProcessingOrder($preOrderId);
 
         if (!$Order) {
-            $this->addError('front.shopping.order.error');
+            $this->addError('front.shopping.order_error');
 
             return $this->redirectToRoute('shopping_error');
         }
@@ -123,14 +123,11 @@ class CouponShoppingController extends AbstractController
             // クーポンコード入力項目追加
             // ----------------------------------
             if ($formCouponCancel == 0) {
-                if (!is_null($formCouponCd)) {
-                    // 画面上のクーポンコードが入力されておらず、既にクーポンコードが登録されていればクーポンを無効にする
-                    $this->couponService->removeCouponOrder($Order);
-                }
-
+                // クーポンを利用しない
+                $this->couponService->removeCouponOrder($Order);
                 return $this->redirectToRoute('shopping');
             } else {
-                // クーポンコードが入力されている
+                // クーポンを利用する
                 $discount = 0;
                 $error = false;
                 // クーポン情報を取得

@@ -26,7 +26,7 @@
         });
 
         // append to layout
-        $(".ec-orderConfirm").last().before($("#coupon").detach());
+        $(".ec-orderPayment").last().after($("#coupon").detach());
     })
 </script>
 
@@ -36,10 +36,10 @@
     </div>
     <div id="customer_detail_box" class="column">
         {% if CouponOrder %}
-            <strong class="text-danger">{{ 'plugin_coupon.front.shopping.message.use_code'|trans({'%code%': CouponOrder.coupon_cd }) }}</strong>
+            <strong class="ec-color-red">{{ 'plugin_coupon.front.shopping.message.use_code'|trans({'%code%': CouponOrder.coupon_cd }) }}</strong>
         {% else %}
             {{ 'plugin_coupon.front.shopping.message.empty'|trans }}
         {% endif %}
-        <p><a class="btn btn-default btn-sm" id="coupon_button" href="{{ url('plugin_coupon_shopping') }}">{{ 'plugin_coupon.front.shopping.button.add_coupon'|trans }}</a></p>
+        <p><a class="ec-inlineBtn" id="coupon_button" href="{{ url('plugin_coupon_shopping') }}">{{ 'plugin_coupon.front.shopping.button.add_coupon'|trans }}</a></p>
     </div>
 </div>

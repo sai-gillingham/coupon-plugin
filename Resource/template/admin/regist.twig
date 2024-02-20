@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css', 'admin') }}">
     <style type="text/css">
         .col-sm-2 {
-            max-width: none;
+            width: auto;
         }
     </style>
 {% endblock stylesheet %}
@@ -267,7 +267,7 @@
                         <div class="card-body">
                             {# クーポンコード #}
                             <div class="row">
-                                <div class="col-3">{{ form_label(form.coupon_cd) }}</div>
+                                <div class="col-3">{{ form_label(form.coupon_cd) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     {{ form_widget(form.coupon_cd) }}
                                     {{ form_errors(form.coupon_cd) }}
@@ -277,7 +277,7 @@
                             {# クーポン名 #}
                             <div class="row">
                                 <div class="col-3">
-                                    {{ form_label(form.coupon_name) }}</div>
+                                    {{ form_label(form.coupon_name) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     {{ form_widget(form.coupon_name) }}
                                     {{ form_errors(form.coupon_name) }}
@@ -285,7 +285,7 @@
                             </div>
                             {# クーポン種別 #}
                             <div class="row">
-                                <div class="col-3">{{ form_label(form.coupon_type) }}</div>
+                                <div class="col-3">{{ form_label(form.coupon_type) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     {{ form_widget(form.coupon_type, {'label_attr': {'class': 'radio-inline'}}) }}
                                     {{ form_errors(form.coupon_type) }}
@@ -293,7 +293,7 @@
                             </div>
                             {# 会員のみクーポン #}
                             <div class="row">
-                                <div class="col-3">{{ form_label(form.coupon_member) }}</div>
+                                <div class="col-3">{{ form_label(form.coupon_member) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     {{ form_widget(form.coupon_member, {'label_attr': {'class': 'radio-inline'}}) }}
                                     {{ form_errors(form.coupon_member) }}
@@ -301,7 +301,7 @@
                             </div>
                             {# 値引き種別 #}
                             <div class="row">
-                                <div class="col-3">{{ form_label(form.discount_type) }}</div>
+                                <div class="col-3">{{ form_label(form.discount_type) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     {{ form_widget(form.discount_type, {'label_attr': {'class': 'radio-inline'}}) }}
                                     {{ form_errors(form.discount_type) }}
@@ -327,7 +327,7 @@
                             </div>
                             {# 使用回数 #}
                             <div class="row">
-                                <div class="col-3">{{ form_label(form.coupon_release) }}</div>
+                                <div class="col-3">{{ form_label(form.coupon_release) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     {{ form_widget(form.coupon_release) }}
                                     {{ form_errors(form.coupon_release) }}
@@ -346,7 +346,7 @@
                             </div>
                             {# 有効期間 #}
                             <div class="row">
-                                <div class="col-3">{{ form_label(form.available_from_date) }}</div>
+                                <div class="col-3">{{ form_label(form.available_from_date) }}<span class="badge bg-primary ms-1">{{ 'admin.common.required'|trans }}</span></div>
                                 <div class="col mb-2">
                                     <div class="row justify-content-start">
                                         <div class="col-4">
@@ -388,7 +388,7 @@
                         <div class="collapse show ec-cardCollapse" id="productArea">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <a id="showSearchProductModal" class="btn btn-ec-regular mr-2 add" data-bs-toggle="modal" data-bs-target="#searchProductModal">商品の追加</a>
+                                    <a id="showSearchProductModal" class="btn btn-ec-regular me-2 add" data-bs-toggle="modal" data-bs-target="#searchProductModal">商品の追加</a>
                                 </div>
                                 <div class="tableish" id="coupon_detail_list" data-prototype="{{ include('Coupon42/Resource/template/admin/regist_product_list_prototype.twig') }}">
                                     {% set i = 0 %}
@@ -400,15 +400,17 @@
                                                     {{ form_widget(couponDetailForm.Product) }}
                                                     <div class="col-11 item_detail">
                                                         <div class="item_name_area">
-                                                            <strong class="item_name">
+                                                            <div class="item_name fw-bold">
                                                                 <div id="coupon_CouponDetails_{{ i }}_product_name">
                                                                     {{ couponDetailForm.vars.value.product_name }}
                                                                 </div>
-                                                            </strong><br>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-1 icon_edit">
-                                                        <button class="btn btn-default btn-sm delete-item">{{ 'common.delete'|trans }}</button>
+                                                        <a class="btn btn-ec-actionIcon mr-3 delete-item" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-target="#confirmModal" data-bs-placement="top" title="{{ 'admin.common.delete'|trans }}">
+                                                            <i class="fa fa-close fa-lg text-secondary"></i>
+                                                        </a>
                                                     </div>
                                                 </div><!-- /.item_box -->
                                             {% endif %}
@@ -459,16 +461,18 @@
                                                     {{ form_widget(couponDetailForm.Category) }}
                                                     <div class="col-11 item_detail">
                                                         <div class="item_name_area">
-                                                            <strong class="item_name">
+                                                            <div class="item_name fw-bold">
                                                                 <div id="coupon_CouponDetails_{{ i }}_category_name">
                                                                     {{ couponDetailForm.vars.value.category_full_name }}
                                                                 </div>
-                                                            </strong><br>
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-1 icon_edit">
-                                                        <button class="btn btn-default btn-sm delete-item">{{ 'common.delete'|trans }}</button>
+                                                        <a class="btn btn-ec-actionIcon mr-3 delete-item" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-target="#confirmModal" data-bs-placement="top" title="{{ 'admin.common.delete'|trans }}">
+                                                            <i class="fa fa-close fa-lg text-secondary"></i>
+                                                        </a>
                                                     </div>
                                                 </div><!-- /.item_box -->
                                             {% endif %}
@@ -525,16 +529,16 @@
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="mb-3">
                         {{ form_widget(searchProductModalForm.id, { attr : { placeholder : 'admin.product.name'|trans } } ) }}
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         {{ form_widget(searchProductModalForm.category_id) }}
                     </div>
-                    <div class="form-group text-center">
+                    <div class="text-center mb-3">
                         <button type="button" id="searchProductModalButton" class="btn btn-primary" >{{ 'plugin_coupon.admin.regist.modal.search'|trans }}</button>
                     </div>
-                    <div class="form-group" id="searchProductModalList">
+                    <div id="searchProductModalList">
                     </div>
                 </div>
             </div>
@@ -553,13 +557,13 @@
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="mb-3">
                         {{ form_widget(searchCategoryModalForm.category_id, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <div class="form-group text-center">
+                    <div class="text-center mb-3">
                         <button type="button" id="searchCategoryModalButton" class="btn btn-primary" >{{ 'plugin_coupon.admin.regist.modal.search'|trans }}</button>
                     </div>
-                    <div class="form-group" id="searchCategoryModalList">
+                    <div id="searchCategoryModalList">
                     </div>
                 </div>
             </div>
